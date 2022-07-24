@@ -24,7 +24,7 @@ public struct StacklessStateMachine<State, Action>: StateMachine {
     public func applied(action: Action) -> StacklessStateMachine<State, Action> {
         .init(
             initial: initialState,
-            current: reducer(currentState, action),
+            current: isInFinalState ? currentState : reducer(currentState, action),
             finishingCondition: finishingCondition,
             reducer: reducer
         )

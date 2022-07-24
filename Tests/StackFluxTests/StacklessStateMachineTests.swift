@@ -114,4 +114,17 @@ final class StacklessStateMachineTests: XCTestCase {
         
         XCTAssertTrue(result)
     }
+    
+    func testFinalStateDoesNotChange() {
+        let sut = StacklessStateMachine<S, A>(
+            initial: .s0,
+            current: .s2,
+            finalStates: [.s2],
+            reducer: testReducer
+        )
+        
+        let result = sut.applied(action: .a1).currentState
+        
+        XCTAssertEqual(result, .s2)
+    }
 }
