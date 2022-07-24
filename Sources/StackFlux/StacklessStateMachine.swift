@@ -12,8 +12,8 @@ public struct StacklessStateMachine<State, Action>: StateMachine {
     public init(
         initial: State,
         current: State? = nil,
-        reducer: @escaping (State, Action) -> State,
-        finishingCondition: @escaping (State) -> Bool
+        finishingCondition: @escaping (State) -> Bool,
+        reducer: @escaping (State, Action) -> State
     ) {
         self.initialState = initial
         self.currentState = current ?? initial
@@ -25,8 +25,8 @@ public struct StacklessStateMachine<State, Action>: StateMachine {
         .init(
             initial: initialState,
             current: reducer(currentState, action),
-            reducer: reducer,
-            finishingCondition: finishingCondition
+            finishingCondition: finishingCondition,
+            reducer: reducer
         )
     }
 }
@@ -41,8 +41,8 @@ extension StacklessStateMachine where State: Hashable {
         self.init(
             initial: initial,
             current: current,
-            reducer: reducer,
-            finishingCondition: { finalStates.contains($0) }
+            finishingCondition: { finalStates.contains($0) },
+            reducer: reducer
         )
     }
 }

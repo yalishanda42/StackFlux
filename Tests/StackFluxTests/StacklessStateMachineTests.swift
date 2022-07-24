@@ -18,8 +18,8 @@ final class StacklessStateMachineTests: XCTestCase {
         let initial: S = .s1
         let sut = StacklessStateMachine<S, A>(
             initial: initial,
-            reducer: testReducer,
-            finishingCondition: { $0 == .s2 }
+            finishingCondition: { $0 == .s2 },
+            reducer: testReducer
         )
         
         let result = sut.currentState
@@ -44,8 +44,8 @@ final class StacklessStateMachineTests: XCTestCase {
         let sut = StacklessStateMachine<S, A>(
             initial: .s0,
             current: .s0,
-            reducer: testReducer,
-            finishingCondition: { $0 == .s0 }
+            finishingCondition: { $0 == .s0 },
+            reducer: testReducer
         )
         
         let result = sut.isInFinalState
@@ -57,8 +57,8 @@ final class StacklessStateMachineTests: XCTestCase {
         let sut = StacklessStateMachine<S, A>(
             initial: .s0,
             current: .s0,
-            reducer: testReducer,
-            finishingCondition: { $0 == .s2 }
+            finishingCondition: { $0 == .s2 },
+            reducer: testReducer
         )
         
         let result = sut
@@ -72,8 +72,8 @@ final class StacklessStateMachineTests: XCTestCase {
         let sut = StacklessStateMachine<S, A>(
             initial: .s0,
             current: .s0,
-            reducer: testReducer,
-            finishingCondition: { $0 == .s2 }
+            finishingCondition: { $0 == .s2 },
+            reducer: testReducer
         )
         
         let result = sut
@@ -87,8 +87,8 @@ final class StacklessStateMachineTests: XCTestCase {
         let sut = StacklessStateMachine<S, A>(
             initial: .s0,
             current: .s0,
-            reducer: testReducer,
-            finishingCondition: { $0 == .s2 }
+            finishingCondition: { $0 == .s2 },
+            reducer: testReducer
         )
         
         let result = sut
